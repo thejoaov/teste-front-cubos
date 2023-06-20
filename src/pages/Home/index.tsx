@@ -1,8 +1,16 @@
+import Box from '../../components/Box';
+import Page from '../../components/Page';
+import SearchBox from '../../components/SearchBox';
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <input role="search"></input>
+    <Page>
+      <Box maxWidth="80vw" width="100%" mt={5} mb={4}>
+        <SearchBox
+          placeholder="Busque um filme por nome, ano ou gênero..."
+          role="search"
+        />
+      </Box>
       <div role="list">
         <div role="item">
           <h2 role="title">Film</h2>
@@ -21,7 +29,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

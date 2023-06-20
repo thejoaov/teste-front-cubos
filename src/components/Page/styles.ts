@@ -4,8 +4,9 @@ import { space } from 'styled-system';
 export const StyledPage = styled.div`
   display: flex;
   flex-direction: column;
-  place-content: center;
   height: 100vh;
   width: 100vw;
+  flex: 1;
+  align-items: center;
   ${space}
 `;
