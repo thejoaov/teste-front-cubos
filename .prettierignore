@@ -1,0 +1,6 @@
+coverage
+dist
+public
+build
+.husky
+yarn.lock
