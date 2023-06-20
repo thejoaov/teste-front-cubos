@@ -10,6 +10,9 @@ export function getMoviesByQuery({
     `/search/movie?${new URLSearchParams({
       query,
       page: page.toString(),
+      perPage: '5',
+      language: 'pt-BR',
+      append_to_response: 'images',
     })}`
   );
 }
