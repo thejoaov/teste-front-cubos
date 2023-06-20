@@ -24,3 +24,6 @@ coverage
 *.sln
 *.sw?
 coverage/**
+
+.env*
+!.env.example
