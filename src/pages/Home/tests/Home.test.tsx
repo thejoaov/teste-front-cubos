@@ -4,13 +4,11 @@ import Home from '../index';
 
 describe('Home', () => {
   it('renders correctly', () => {
-    const { getByTestId } = render(<Home />);
+    const { getByRole } = render(<Home />);
 
-    const topBarElement = getByTestId('top-bar');
-    const searchElement = getByTestId('search');
-    const listElement = getByTestId('list');
+    const searchElement = getByRole('search');
+    const listElement = getByRole('list');
 
-    expect(topBarElement).toBeInTheDocument();
     expect(searchElement).toBeInTheDocument();
     expect(listElement).toBeInTheDocument();
   });

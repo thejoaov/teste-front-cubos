@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 import Film from '../pages/Film';
+import TopBar from '../components/TopBar';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -14,7 +15,12 @@ const Routes = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <TopBar />
+      <RouterProvider router={router} />;
+    </>
+  );
 };
 
 export default Routes;
