@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import Home from '../index';
+import Movie from '../index';
 
-describe('Home', () => {
+describe('Movie', () => {
   it('renders correctly', () => {
-    const { getByRole } = render(<Home />);
+    const { getByRole } = render(<Movie />);
 
     const titleElement = getByRole('title');
     const dateElement = getByRole('date');

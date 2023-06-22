@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import Home from '../pages/Home';
-import Film from '../pages/Film';
+import Movie from '../pages/Movie';
 import TopBar from '../components/TopBar';
 import { CachedInfoProvider } from '../contexts/cachedInfo';
 
@@ -11,15 +12,16 @@ const Routes = () => {
       element: <Home />,
     },
     {
-      path: '/film/:id',
-      element: <Film />,
+      path: '/movie/:id',
+      element: <Movie />,
     },
   ]);
 
   return (
     <CachedInfoProvider>
       <TopBar />
-      <RouterProvider router={router} />;
+
+      <RouterProvider router={router} />
     </CachedInfoProvider>
   );
 };

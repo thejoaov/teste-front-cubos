@@ -1,7 +1,7 @@
-const Film = () => {
+const Movie = () => {
   return (
     <div>
-      <h1 role="title">Film</h1>
+      <h1 role="title">Movie</h1>
       <h2 role="date">Date</h2>
 
       <p role="sinposis">Sinopsis</p>
@@ -32,4 +32,4 @@ const Film = () => {
   );
 };
 
-export default Film;
+export default Movie;
