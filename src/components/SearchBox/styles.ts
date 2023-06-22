@@ -10,8 +10,13 @@ export const StyledSearchBox = styled.input`
   font-family: 'Abel', sans-serif;
   padding: 0 5vw 0 5vw;
   font-size: 18px;
+  transition: all 0.1s ease-in-out;
 
   &::placeholder {
     color: ${colors.placeholder};
+  }
+
+  &:focus {
+    outline: 2px solid ${colors.secondary};
   }
 `;
