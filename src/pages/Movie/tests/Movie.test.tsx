@@ -13,52 +13,50 @@ const mockApi = new MockAdapter(apiInstance);
 let mockPage: RenderResult;
 
 const mockMovie: MovieInfoProps = {
-  movie: {
-    adult: false,
-    backdrop_path: '',
-    belongs_to_collection: null,
-    budget: 1000000,
-    genres: [
-      { id: 1, name: 'Action' },
-      { id: 2, name: 'Adventure' },
+  adult: false,
+  backdrop_path: '',
+  belongs_to_collection: null,
+  budget: 1000000,
+  genres: [
+    { id: 1, name: 'Action' },
+    { id: 2, name: 'Adventure' },
+  ],
+  homepage: '',
+  id: 1,
+  imdb_id: 'tt1234567',
+  original_language: 'en',
+  original_title: 'Test Movie',
+  overview: 'This is a test movie',
+  popularity: 5.0,
+  poster_path: '',
+  production_companies: [],
+  production_countries: [],
+  release_date: '2023-06-22',
+  revenue: 2000000,
+  runtime: 120,
+  spoken_languages: [],
+  status: 'Released',
+  tagline: 'A test movie',
+  title: 'Test Movie',
+  video: false,
+  videos: {
+    results: [
+      {
+        id: '123456',
+        iso_639_1: 'en',
+        iso_3166_1: 'US',
+        key: '123456',
+        name: 'Test Movie',
+        official: true,
+        published_at: '2021-06-22T00:00:00.000Z',
+        site: 'YouTube',
+        size: 1080,
+        type: 'Trailer',
+      },
     ],
-    homepage: '',
-    id: 1,
-    imdb_id: 'tt1234567',
-    original_language: 'en',
-    original_title: 'Test Movie',
-    overview: 'This is a test movie',
-    popularity: 5.0,
-    poster_path: '',
-    production_companies: [],
-    production_countries: [],
-    release_date: '2023-06-22',
-    revenue: 2000000,
-    runtime: 120,
-    spoken_languages: [],
-    status: 'Released',
-    tagline: 'A test movie',
-    title: 'Test Movie',
-    video: false,
-    videos: {
-      results: [
-        {
-          id: '123456',
-          iso_639_1: 'en',
-          iso_3166_1: 'US',
-          key: '123456',
-          name: 'Test Movie',
-          official: true,
-          published_at: '2021-06-22T00:00:00.000Z',
-          site: 'YouTube',
-          size: 1080,
-          type: 'Trailer',
-        },
-      ],
-    },
-    vote_average: 7.5,
-    vote_count: 100,
   },
+  vote_average: 7.5,
+  vote_count: 100,
 };
 
 mockApi
@@ -68,7 +66,7 @@ mockApi
       append_to_response: 'videos',
     },
   })
-  .reply(200, mockMovie.movie);
+  .reply(200, mockMovie);
 
 const router = createMemoryRouter(
   [
