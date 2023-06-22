@@ -1,18 +1,30 @@
-import { AxiosResponse } from 'axios';
+import { AxiosPromise } from 'axios';
 import apiInstance from '../../config/api';
-import { GetMoviesByQueryRequest, GetMoviesByQueryResponse } from './types';
+import {
+  GetGenresResponse,
+  GetMoviesByQueryRequest,
+  GetMoviesByQueryResponse,
+} from './types';
 
 export function getMoviesByQuery({
   query,
   page = 1,
-}: GetMoviesByQueryRequest): Promise<AxiosResponse<GetMoviesByQueryResponse>> {
-  return apiInstance.get(
-    `/search/movie?${new URLSearchParams({
+}: GetMoviesByQueryRequest): AxiosPromise<GetMoviesByQueryResponse> {
+  return apiInstance.get('/search/movie', {
+    params: {
       query,
       page: page.toString(),
       perPage: '5',
       language: 'pt-BR',
       append_to_response: 'images',
-    })}`
-  );
+    },
+  });
+}
+
+export function getGenres(): AxiosPromise<GetGenresResponse> {
+  return apiInstance.get('/genre/movie/list', {
+    params: {
+      language: 'pt-BR',
+    },
+  });
 }

@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import apiInstance from '../../../config/api';
 import { GetMoviesByQueryResponse } from '../types';
-import { getMoviesByQuery } from '..';
+import { getGenres, getMoviesByQuery } from '..';
 
 const mockApi = new MockAdapter(apiInstance);
 
@@ -55,15 +55,15 @@ describe('getMoviesByQuery', () => {
     };
 
     mockApi
-      .onGet(
-        `/search/movie?${new URLSearchParams({
+      .onGet('/search/movie', {
+        params: {
           query,
           page: page.toString(),
           perPage: '5',
           language: 'pt-BR',
           append_to_response: 'images',
-        })}`
-      )
+        },
+      })
       .reply(200, expectedResponse);
 
     const response = await getMoviesByQuery({ query, page });
@@ -79,6 +79,42 @@ describe('getMoviesByQuery', () => {
     mockApi.onGet('/search/movie').reply(404);
 
     await expect(getMoviesByQuery({ query, page })).rejects.toThrow(
+      'Request failed with status code 404'
+    );
+    expect(mockApi.history.get.length).toBe(1);
+  });
+
+  it('should return a list of genres', async () => {
+    const expectedResponse = {
+      genres: [
+        {
+          id: 28,
+          name: 'Ação',
+        },
+        {
+          id: 12,
+          name: 'Aventura',
+        },
+        {
+          id: 16,
+          name: 'Animação',
+        },
+      ],
+    };
+
+    mockApi.onGet('/genre/movie/list').reply(200, expectedResponse);
+
+    const response = await getGenres();
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(expectedResponse);
+    expect(mockApi.history.get.length).toBe(1);
+  });
+
+  it('should throw an error if the API returns a non-2xx response', async () => {
+    mockApi.onGet('/genre/movie/list').reply(404);
+
+    await expect(getGenres()).rejects.toThrow(
       'Request failed with status code 404'
     );
     expect(mockApi.history.get.length).toBe(1);
