@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { debounce } from 'lodash';
+import { useNavigate } from 'react-router-dom';
 import Box from '../../components/Box';
 import Page from '../../components/Page';
 import SearchBox from '../../components/SearchBox';
-import { Movie } from '../../services/api/types';
-import { getMoviesByQuery } from '../../services/api';
 import Loader from '../../components/Loader';
 import MovieCard from '../../components/MovieCard';
 import useCachedInfo from '../../hooks/useCachedInfo';
+import { getMoviesByQuery } from '../../services/api';
+import { Movie } from '../../services/api/types';
 
 const Home = () => {
   const [search, setSearch] = useState('');
@@ -16,6 +17,7 @@ const Home = () => {
   const [page, setPage] = useState(1);
 
   const { genres } = useCachedInfo();
+  const navigate = useNavigate();
 
   const handleGetCharacters = useCallback(
     async (req: { page: number; query: string }) => {
@@ -88,6 +90,7 @@ const Home = () => {
                 movieImage={`${import.meta.env.VITE_API_IMAGE_URL}${
                   movie.poster_path
                 }`}
+                onClick={() => navigate(`/movie/${movie.id}`)}
                 movieName={movie.title}
                 movieReleaseDate={movie.release_date}
                 movieVoteAverage={movie.vote_average}
