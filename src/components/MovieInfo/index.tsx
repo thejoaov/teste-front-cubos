@@ -2,11 +2,9 @@ import { MovieDetail } from '../../services/api/types';
 import { formatCurrency, formatDate } from '../../utils/formats';
 import { Content, Header, StyledMovieInfo } from './styles';
 
-export type MovieInfoProps = {
-  movie: MovieDetail;
-};
+export type MovieInfoProps = MovieDetail;
 
-const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
+const MovieInfo: React.FC<MovieInfoProps> = ({ ...movie }) => {
   return (
     <StyledMovieInfo role="movie-info">
       <Header>
