@@ -2,6 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { MovieDetail } from '../../services/api/types';
 
 import MovieInfo from '../../components/MovieInfo';
+import YoutubeVideo from '../../components/YoutubeVideo';
 
 const Movie = () => {
   const movieData = useLoaderData() as MovieDetail;
@@ -10,11 +11,9 @@ const Movie = () => {
     <div>
       <MovieInfo movie={movieData} />
 
-      <iframe
-        // src={`https://www.youtube.com/embed/${movieData.videos.results[0].key}`}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      />
+      {movieData.videos.results.length ? (
+        <YoutubeVideo videoId={movieData.videos.results[0].key} />
+      ) : null}
     </div>
   );
 };
