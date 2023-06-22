@@ -14,7 +14,7 @@ export default defineConfig({
     css: true,
     passWithNoTests: true,
     coverage: {
-      reporters: ['lcov', 'json-summary'],
+      reporter: ['lcov', 'json-summary', 'json', 'text', 'clover'],
     },
   },
 });
