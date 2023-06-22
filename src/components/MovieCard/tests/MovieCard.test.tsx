@@ -1,20 +1,24 @@
-import { render } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
 import MovieCard, { MovieCardProps } from '../index';
 
-const mockMovie: MovieCardProps = {
-  movieName: 'Movie Name',
-  movieImage: 'https://via.placeholder.com/300x450',
-  movieDescription: 'Movie Description',
-  movieReleaseDate: 'Movie Release Date',
-  movieGenres: ['Action', 'Adventure'],
-  movieVoteAverage: 10,
-};
+const spyClick = vi.fn();
 
 describe('MovieCard', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
+    const mockMovie: MovieCardProps = {
+      movieName: 'Movie Name',
+      movieImage: 'https://via.placeholder.com/300x450',
+      movieDescription: 'Movie Description',
+      movieReleaseDate: 'Movie Release Date',
+      movieGenres: ['Action', 'Adventure'],
+      movieVoteAverage: 10,
+      onClick: spyClick,
+    };
+
     const { getByRole } = render(<MovieCard {...mockMovie} />);
 
+    const cardElement = getByRole('movie-card');
     const nameElement = getByRole('movie-name');
     const imageElement = getByRole('movie-image');
     const descriptionElement = getByRole('movie-description');
@@ -28,5 +32,11 @@ describe('MovieCard', () => {
     expect(releaseDateElement).toBeInTheDocument();
     expect(genresElement).toBeInTheDocument();
     expect(voteAverageElement).toBeInTheDocument();
+
+    fireEvent.click(cardElement);
+
+    await waitFor(() => {
+      expect(spyClick).toHaveBeenCalled();
+    });
   });
 });

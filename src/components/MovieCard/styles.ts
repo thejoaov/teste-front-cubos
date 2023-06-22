@@ -4,6 +4,7 @@ import { colors } from '../../utils/colors';
 export const MovieCardContainer = styled.div`
   display: flex;
   background-color: ${colors.background};
+  transition: all 0.2s ease-in-out;
 
   div {
     flex: 1;
@@ -13,6 +14,19 @@ export const MovieCardContainer = styled.div`
     width: 150px;
     contain: content;
     object-fit: cover;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    img {
+      width: 100%;
+    }
   }
 `;
 

@@ -14,6 +14,7 @@ export type MovieCardProps = {
   movieReleaseDate: string;
   movieGenres: string[];
   movieVoteAverage: number;
+  onClick?: () => void;
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({
@@ -23,9 +24,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
   movieReleaseDate,
   movieGenres,
   movieVoteAverage,
+  onClick,
 }) => {
   return (
-    <MovieCardContainer role="movie-card">
+    <MovieCardContainer role="movie-card" onClick={onClick}>
       <img
         role="movie-image"
         src={movieImage}

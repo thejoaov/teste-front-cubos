@@ -84,10 +84,7 @@ const Home = () => {
             <Box marginY="30px" width="90vw" key={movie.id}>
               <MovieCard
                 movieDescription={movie.overview}
-                movieGenres={
-                  // TODO: Implement genres
-                  getGenres(movie.genre_ids)
-                }
+                movieGenres={getGenres(movie.genre_ids)}
                 movieImage={`${import.meta.env.VITE_API_IMAGE_URL}${
                   movie.poster_path
                 }`}
