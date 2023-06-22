@@ -1,6 +1,7 @@
 import React, {
   PropsWithChildren,
   createContext,
+  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -9,6 +10,7 @@ import { getGenres } from '../../services/api';
 
 export type CachedInfo = {
   genres: Genre[] | null;
+  translateGenres: (ids: number[]) => string[];
 };
 
 export type CachedInfoData = CachedInfo;
@@ -31,6 +33,16 @@ export const CachedInfoProvider: React.FC<PropsWithChildren> = ({
     }
   };
 
+  const translateGenres = useCallback(
+    (ids: number[]) => {
+      if (!genres) return [];
+      return genres
+        .filter((genre) => ids.includes(genre.id))
+        .map((item) => item.name);
+    },
+    [genres]
+  );
+
   useEffect(() => {
     handleGetGenres();
   }, []);
@@ -39,6 +51,7 @@ export const CachedInfoProvider: React.FC<PropsWithChildren> = ({
     <CachedInfoContext.Provider
       value={{
         genres,
+        translateGenres,
       }}
     >
       {children}

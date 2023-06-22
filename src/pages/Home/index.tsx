@@ -21,7 +21,7 @@ const Home = () => {
     'results'
   > | null>(null);
 
-  const { genres } = useCachedInfo();
+  const { translateGenres } = useCachedInfo();
   const navigate = useNavigate();
 
   const handleGetCharacters = useCallback(
@@ -65,16 +65,6 @@ const Home = () => {
     }
   }, [debouncedSearch, page, search]);
 
-  const getGenres = useCallback(
-    (ids: number[]) => {
-      if (!genres) return [];
-      return genres
-        .filter((genre) => ids.includes(genre.id))
-        .map((item) => item.name);
-    },
-    [genres]
-  );
-
   return (
     <Page>
       <Box maxWidth="80vw" width="100%" mt={5} mb={4}>
@@ -97,7 +87,7 @@ const Home = () => {
               <Box marginY="30px" width="90vw" key={movie.id}>
                 <MovieCard
                   movieDescription={movie.overview}
-                  movieGenres={getGenres(movie.genre_ids)}
+                  movieGenres={translateGenres(movie.genre_ids)}
                   movieImage={`${import.meta.env.VITE_API_IMAGE_URL}${
                     movie.poster_path
                   }`}

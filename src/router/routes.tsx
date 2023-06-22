@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Movie from '../pages/Movie';
 import TopBar from '../components/TopBar';
 import { CachedInfoProvider } from '../contexts/cachedInfo';
+import { getMovieById } from '../services/api';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,11 @@ const Routes = () => {
     {
       path: '/movie/:id',
       element: <Movie />,
+      loader: async ({ params }) => {
+        if (!params.id) throw new Error('Movie id not provided');
+        const { data } = await getMovieById(params.id);
+        return data;
+      },
     },
   ]);
 

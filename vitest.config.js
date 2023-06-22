@@ -13,5 +13,8 @@ export default defineConfig({
     // since parsing CSS is slow
     css: true,
     passWithNoTests: true,
+    coverage: {
+      reporters: ['lcov', 'json-summary'],
+    },
   },
 });

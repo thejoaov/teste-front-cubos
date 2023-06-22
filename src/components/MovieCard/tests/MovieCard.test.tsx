@@ -10,7 +10,7 @@ describe('MovieCard', () => {
       movieName: 'Movie Name',
       movieImage: 'https://via.placeholder.com/300x450',
       movieDescription: 'Movie Description',
-      movieReleaseDate: 'Movie Release Date',
+      movieReleaseDate: '12-12-2020',
       movieGenres: ['Action', 'Adventure'],
       movieVoteAverage: 10,
       onClick: spyClick,

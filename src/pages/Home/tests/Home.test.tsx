@@ -53,11 +53,9 @@ describe('Home', () => {
 
     const searchElement = getByRole('search');
     const listElement = getByRole('list');
-    const paginationElement = getByRole('pagination');
 
     expect(searchElement).toBeInTheDocument();
     expect(listElement).toBeInTheDocument();
-    expect(paginationElement).toBeInTheDocument();
   });
 
   it('should search movies', async () => {

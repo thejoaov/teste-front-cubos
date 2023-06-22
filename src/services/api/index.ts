@@ -2,6 +2,7 @@ import { AxiosPromise } from 'axios';
 import apiInstance from '../../config/api';
 import {
   GetGenresResponse,
+  GetMovieByIdResponse,
   GetMoviesByQueryRequest,
   GetMoviesByQueryResponse,
 } from './types';
@@ -25,6 +26,15 @@ export function getGenres(): AxiosPromise<GetGenresResponse> {
   return apiInstance.get('/genre/movie/list', {
     params: {
       language: 'pt-BR',
+    },
+  });
+}
+
+export function getMovieById(id: string): AxiosPromise<GetMovieByIdResponse> {
+  return apiInstance.get(`/movie/${id}`, {
+    params: {
+      language: 'pt-BR',
+      append_to_response: 'videos',
     },
   });
 }

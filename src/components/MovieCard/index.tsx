@@ -6,6 +6,7 @@ import {
   MovieCardHeader,
   VoteAverage,
 } from './styles';
+import { formatDate } from '../../utils/formats';
 
 export type MovieCardProps = {
   movieName: string;
@@ -42,9 +43,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
       <div>
         <MovieCardHeader role="movie-name">
           <h2>{movieName}</h2>
-          <p role="movie-release-date">
-            {new Date(movieReleaseDate).toLocaleDateString()}
-          </p>
+          <p role="movie-release-date">{formatDate(movieReleaseDate)}</p>
         </MovieCardHeader>
         <VoteAverage role="movie-vote-average">
           {(movieVoteAverage * 10).toPrecision(2)}%

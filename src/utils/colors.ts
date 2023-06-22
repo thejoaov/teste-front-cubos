@@ -6,4 +6,5 @@ export const colors = {
   text: '#686868',
   textInverted: '#ffffff',
   textLight: '#ababab',
+  cardBackground: '#f2f2f2',
 };
