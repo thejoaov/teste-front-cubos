@@ -39,4 +39,22 @@ describe('MovieCard', () => {
       expect(spyClick).toHaveBeenCalled();
     });
   });
+
+  it('renders correctly with incorrect date', async () => {
+    const mockMovie: MovieCardProps = {
+      movieName: 'Movie Name',
+      movieImage: 'https://via.placeholder.com/300x450',
+      movieDescription: 'Movie Description',
+      movieReleaseDate: 'not a correct date',
+      movieGenres: ['Action', 'Adventure'],
+      movieVoteAverage: 10,
+      onClick: spyClick,
+    };
+
+    const { getByRole } = render(<MovieCard {...mockMovie} />);
+
+    const releaseDateElement = getByRole('movie-release-date');
+
+    expect(releaseDateElement).toBeInTheDocument();
+  });
 });

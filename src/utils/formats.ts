@@ -7,7 +7,7 @@ export const formatCurrency = (value: number) => {
 };
 
 export const formatDate = (date: string) => {
-  return new Intl.DateTimeFormat('pt-BR', {
+  return new Date(date).toLocaleDateString('pt-BR', {
     timeZone: 'UTC',
-  }).format(new Date(date));
+  });
 };
