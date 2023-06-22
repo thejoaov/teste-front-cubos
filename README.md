@@ -1,8 +1,9 @@
 <div align="center">
 
-# Teste Frontend
-The Movie DB
-+ [![cov](https://thejoaov.github.io/teste-front-cubos/badges/coverage.svg)](https://github.com/thejoaov/teste-front-cubos/actions)
+# Front End Test
+Cubos - The Movie DB
+
+[![codecov](https://codecov.io/gh/thejoaov/teste-front-cubos/branch/master/graph/badge.svg?token=ODd7u8teLp)](https://codecov.io/gh/thejoaov/teste-front-cubos)
 </div>
 
 ## Setup and Running
