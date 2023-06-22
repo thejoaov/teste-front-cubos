@@ -1,5 +1,11 @@
 import React from 'react';
-import { MovieCardContainer } from './styles';
+import {
+  MovieCardBody,
+  MovieCardContainer,
+  MovieCardFooter,
+  MovieCardHeader,
+  VoteAverage,
+} from './styles';
 
 export type MovieCardProps = {
   movieName: string;
@@ -19,14 +25,40 @@ const MovieCard: React.FC<MovieCardProps> = ({
   movieVoteAverage,
 }) => {
   return (
-    <MovieCardContainer>
-      <img role="movie-image" src={movieImage} alt={movieName} />
+    <MovieCardContainer role="movie-card">
+      <img
+        role="movie-image"
+        src={movieImage}
+        alt="Image not found"
+        onError={(e) => {
+          e.currentTarget.src =
+            'https://via.placeholder.com/300x450.png?text=Image+not+found';
+          e.currentTarget.alt = 'Image not found';
+        }}
+      />
+
       <div>
-        <h2 role="movie-name">{movieName}</h2>
-        <p role="movie-description">{movieDescription}</p>
-        <p role="movie-release-date">{movieReleaseDate}</p>
-        <p role="movie-genres">{movieGenres}</p>
-        <p role="movie-vote-average">{movieVoteAverage}</p>
+        <MovieCardHeader role="movie-name">
+          <h2>{movieName}</h2>
+          <p role="movie-release-date">
+            {new Date(movieReleaseDate).toLocaleDateString()}
+          </p>
+        </MovieCardHeader>
+        <VoteAverage role="movie-vote-average">
+          {(movieVoteAverage * 10).toPrecision(2)}%
+        </VoteAverage>
+
+        <MovieCardBody>
+          <p role="movie-description">{movieDescription}</p>
+        </MovieCardBody>
+
+        <MovieCardFooter role="movie-genres">
+          {movieGenres.map((genre) => (
+            <span key={genre} role="movie-genre">
+              {genre}
+            </span>
+          ))}
+        </MovieCardFooter>
       </div>
     </MovieCardContainer>
   );
