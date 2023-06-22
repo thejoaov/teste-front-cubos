@@ -97,3 +97,11 @@ export type MovieDetail = {
 };
 
 export type GetMovieByIdResponse = MovieDetail;
+
+export type Language = {
+  iso_639_1: string;
+  english_name: string;
+  name: string;
+};
+
+export type GetLanguagesResponse = Language[];

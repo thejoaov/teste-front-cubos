@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import apiInstance from '../../../config/api';
 import { GetMoviesByQueryResponse } from '../types';
-import { getGenres, getMoviesByQuery } from '..';
+import { getGenres, getLanguages, getMoviesByQuery } from '..';
 
 const mockApi = new MockAdapter(apiInstance);
 
@@ -117,6 +117,29 @@ describe('getMoviesByQuery', () => {
     await expect(getGenres()).rejects.toThrow(
       'Request failed with status code 404'
     );
+    expect(mockApi.history.get.length).toBe(1);
+  });
+
+  it('should return a list of languages', async () => {
+    const expectedResponse = [
+      {
+        iso_639_1: 'en',
+        english_name: 'English',
+        name: 'English',
+      },
+      {
+        iso_639_1: 'pt',
+        english_name: 'Portuguese',
+        name: 'Português',
+      },
+    ];
+
+    mockApi.onGet('/configuration/languages').reply(200, expectedResponse);
+
+    const response = await getLanguages();
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(expectedResponse);
     expect(mockApi.history.get.length).toBe(1);
   });
 });

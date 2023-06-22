@@ -2,6 +2,7 @@ import { AxiosPromise } from 'axios';
 import apiInstance from '../../config/api';
 import {
   GetGenresResponse,
+  GetLanguagesResponse,
   GetMovieByIdResponse,
   GetMoviesByQueryRequest,
   GetMoviesByQueryResponse,
@@ -37,4 +38,8 @@ export function getMovieById(id: string): AxiosPromise<GetMovieByIdResponse> {
       append_to_response: 'videos',
     },
   });
+}
+
+export function getLanguages(): AxiosPromise<GetLanguagesResponse> {
+  return apiInstance.get('/configuration/languages');
 }
