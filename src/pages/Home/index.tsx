@@ -67,7 +67,7 @@ const Home = () => {
 
   return (
     <Page>
-      <Box max-width="80vw" width="100%" mt={5} mb={4}>
+      <Box maxWidth="80vw" width="100%" mt={5} mb={4}>
         <SearchBox
           placeholder="Busque um filme por nome, ano ou gênero..."
           role="search"
@@ -98,6 +98,10 @@ const Home = () => {
             </Box>
           ))}
         </Box>
+      )}
+
+      {!loading && !data?.length && (
+        <Box role="pagination">{/* TODO: Pagination element */}</Box>
       )}
     </Page>
   );

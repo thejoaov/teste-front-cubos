@@ -5,11 +5,12 @@ import {
   RenderResult,
 } from '@testing-library/react';
 import { SpyInstance, describe, it, vi } from 'vitest';
-import Home from '../index';
 import MockAdapter from 'axios-mock-adapter';
+import { BrowserRouter } from 'react-router-dom';
 import apiInstance from '../../../config/api';
 import { GetMoviesByQueryResponse } from '../../../services/api/types';
 import { CachedInfoProvider } from '../../../contexts/cachedInfo';
+import Home from '../index';
 
 const mockApi = new MockAdapter(apiInstance);
 
@@ -40,7 +41,9 @@ describe('Home', () => {
     consoleErrorSpy = vi.spyOn(console, 'error');
     mockPage = render(
       <CachedInfoProvider>
-        <Home />
+        <BrowserRouter>
+          <Home />
+        </BrowserRouter>
       </CachedInfoProvider>
     );
   });
@@ -50,9 +53,11 @@ describe('Home', () => {
 
     const searchElement = getByRole('search');
     const listElement = getByRole('list');
+    const paginationElement = getByRole('pagination');
 
     expect(searchElement).toBeInTheDocument();
     expect(listElement).toBeInTheDocument();
+    expect(paginationElement).toBeInTheDocument();
   });
 
   it('should search movies', async () => {
